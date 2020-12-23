@@ -9,28 +9,20 @@ class Dog {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
 
-}
-class Paw {
-        public String paw;
-
-        public Paw(String paw) {
-            this.paw = paw;
-        }
+    public String paw;
+    public Paw(String paw) {
+        this.paw = paw;
     }
 
-class Voice {
     public String sayVoice;
-
-    public Voice(String sayVoice) {
+    public void Voice(String sayVoice) {
         this.sayVoice = sayVoice;
     }
 }
-
 
 public class Main {
 
