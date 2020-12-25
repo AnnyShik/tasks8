@@ -2,6 +2,7 @@ package com.annyshik;
 
 class Dog {
     public String name;
+
     public Dog(String name) {
         this.name = name;
     }
@@ -9,70 +10,114 @@ class Dog {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
-
 }
+
 class Paw {
     public String paw;
+
     public Paw(String paw) {
         this.paw = paw;
     }
 }
+
 class Voice {
     public String sayVoice;
+
     public Voice(String sayVoice) {
         this.sayVoice = sayVoice;
     }
 }
+////////////////////
 
-class  Point{ //класс точка (математическая, двухмерная)
-    public int corX;
-    public int corY;
-    public int radius;
-//конструктор принимает координаты
-    public Point (int corX, int corY,int radius) {
+class Point { //класс точка (математическая, двухмерная)
+    private double corX;
+    private double corY;
+
+    /***конструктор принимает координаты
+     //гетеры и сеттеры для координат*/
+    public Point(double x, double y) {
+//        this.corX = corX;
+//        this.corY = corY;
+        corX = x;
+        corY = y;
+    }
+
+    public double getCorX() {
+        return corX;
+    }
+
+    public void setCorX(double corX) {
         this.corX = corX;
+    }
+
+    public double getCorY() {
+        return corY;
+    }
+
+    public void setCorY(double corY) {
         this.corY = corY;
-        this.radius = radius;
     }
 
-    private double center;
+    /***метод проверки лежит ли точка в начале координат (возвращает true или false)    */
+    // TODO: 25.12.2020  заменить нули на сентрсиркле где в войд2 стоят нули
+    public boolean pointAtTheOrigin() {
+        return corX == 0 && corY == 0;
+    }
 
-    /***метод проверки лежит ли точка в начале координат (возвращает true или false)
-     *
-     */
-//      public boolean pointAtTheOrigin (Point dot){
-//        boolean itPointOrigin = dot.lengthTo(center) <= radius;
-//        return itPointOrigin;
-//}
+    /***метод для вывода точки в консоль*/
+    public void corToConsole() {
+        System.out.println(corX + ", " + corY);
+    }
 
+    /***Нахождение длины отрезка между точкой lengthToDot и началом координат по теореме Пифагора*/
+    public double lengthToDot(Point point) {
+        return Math.sqrt(Math.pow(point.corX - corY, 2) + Math.pow((point.corY - corY), 2));
+    }
 }
+
 class Circle { //класс окружность
+    /***конструктор принимает точку-центр и радиус*/
+    private Point centerCircle;
+    private double radiusCircle;
 
-    public int centerCircle;
-    public double radius;
-    //конструктор принимает точку-центр и радиус
-
-    public Circle (Point centerCircle, double radiusCircle)     {
-        this.radius = radius;
+    public Circle(Point centerCircle, double radiusCircle) {
+        this.centerCircle = centerCircle;
+        this.radiusCircle = radiusCircle;
     }
+
     /*** метод проверки лежит ли точка в этой окружности
-    //Нахождение длины отрезка между точкой lengthToDot и началом координат по теореме Пифагора
-    // (квадрат длины гипотенузы равен сумме квадратов длин катетов).
-    //Сравнению полученного значения с радиусом круга.
-    */
-    public double lengthToDot =
-          public boolean containsPoint (Point p){
-        boolean itPointInCercle = p.lengthToDot(center) <= radius;
-        return itPointInCercle;
-}
+     //Сравнение полученного значения с радиусом круга.*/
+    public boolean containsPoint(Point p) {
+//        boolean itPointInCercle = p.lengthToDot(centerCircle) <= radius;
+//        return itPointInCercle;
+        return radiusCircle >= p.lengthToDot(centerCircle);
+
+    }
+
+    /***геттеры и сеттеры для всех полей*/
+    public Point getCenterCircle() {
+        return centerCircle;
+    }
+
+    public void setCenterCircle(Point centerCircle) {
+        this.centerCircle = centerCircle;
+    }
+
+    public double getRadius() {
+        return radiusCircle;
+    }
+
+    public void setRadius(double radiusCircle) {
+        this.radiusCircle = radiusCircle;
+    }
 }
 
 public class Main {
-
-    public static void main(String[] args) {
+    public static void task1() {
         Dog dog = new Dog("Бобик");
 
         Paw givePaw = new Paw("подал лапу");
@@ -80,8 +125,34 @@ public class Main {
 
         System.out.println(dog.name + " " + givePaw.paw);
         System.out.println(castVoice.sayVoice);
-        //////////////////
-        Point point = new Point ();
+    }
+
+    public static void task2() {
+        Point[] allPoints = {
+                new Point(6, 4),
+                new Point(4, 3),
+                new Point(0, 0)
+        };
+        for (Point point : allPoints) {
+            point.corToConsole();
+            System.out.println("Point at the origin: " + point.corToConsole());
+        }
+        //points[0].lengthToDot(points[1]) = distanceBetweenPoints;
+        System.out.println("Distance between points №1 and №2 = " + allPoints[0].lengthToDot(allPoints[1]));
+        Point centerCircle = new Point();
+        Circle circle = new Circle(centerCircle, getRadius);
+        System.out.println("Enter center of circle: ");
+        centerCircle.corToConsole();
+        System.out.println("Radius of circle: " + Circle.getRadius());
+        System.out.println("Point №1 in the circle: " + Circle.containsPoint(allPoints[0]));
+
+    }
+
+    public static void main(String[] args) {
+        //task1();
+        task2();
+
 
     }
 }
+
