@@ -40,8 +40,8 @@ class Point { //класс точка (математическая, двухм�
     /***конструктор принимает координаты
      //гетеры и сеттеры для координат*/
     public Point(double x, double y) {
-//        this.corX = corX;
-//        this.corY = corY;
+        //        this.corX = corX;
+        //        this.corY = corY;
         corX = x;
         corY = y;
     }
@@ -73,24 +73,24 @@ class Point { //класс точка (математическая, двухм�
     }
 
     /***Нахождение длины отрезка между точкой lengthToDot и началом координат по теореме Пифагора*/
-    public double lengthToDot(com.annyshik.Point point) {
+    public double lengthToDot(Point point) {
         return Math.sqrt(Math.pow(point.corX - corY, 2) + Math.pow((point.corY - corY), 2));
     }
 }
 
 class Circle { //класс окружность
     /***конструктор принимает точку-центр и радиус*/
-    private com.annyshik.Point centerCircle;
+    private Point centerCircle;
     private double radiusCircle;
 
-    public Circle(com.annyshik.Point centerCircle, double radiusCircle) {
+    public Circle(Point centerCircle, double radiusCircle) {
         this.centerCircle = centerCircle;
         this.radiusCircle = radiusCircle;
     }
 
     /*** метод проверки лежит ли точка в этой окружности
      //Сравнение полученного значения с радиусом круга.*/
-    public boolean containsPoint(com.annyshik.Point p) {
+    public boolean containsPoint(Point p) {
 
         boolean itPointInCercle = radiusCircle >= p.lengthToDot(centerCircle);
         return itPointInCercle;
@@ -98,11 +98,11 @@ class Circle { //класс окружность
     }
 
     /***геттеры и сеттеры для всех полей*/
-    public com.annyshik.Point getCenterCircle() {
+    public Point getCenterCircle() {
         return centerCircle;
     }
 
-    public void setCenterCircle(com.annyshik.Point centerCircle) {
+    public void setCenterCircle(Point centerCircle) {
         this.centerCircle = centerCircle;
     }
 
@@ -117,23 +117,23 @@ class Circle { //класс окружность
 
 public class Main {
     public static void task1() {
-        com.annyshik.Dog dog = new com.annyshik.Dog("Бобик");
+        Dog dog = new Dog("Бобик");
 
-        com.annyshik.Paw givePaw = new com.annyshik.Paw("подал лапу");
-        com.annyshik.Voice castVoice = new com.annyshik.Voice("Гав!");
+        Paw givePaw = new Paw("подал лапу");
+        Voice castVoice = new Voice("Гав!");
 
         System.out.println(dog.name + " " + givePaw.paw);
         System.out.println(castVoice.sayVoice);
     }
 
     public static void task2() {
-        com.annyshik.Point[] allPoints = {
-                new com.annyshik.Point(6, 4),
-                new com.annyshik.Point(4, 3),
-                new com.annyshik.Point(0, 0)
+        Point[] allPoints = {
+                new Point(6, 4),
+                new Point(4, 3),
+                new Point(0, 0)
         };
         /*** вывод сообщения лежит ли точка в начале координат*/
-        for (com.annyshik.Point point : allPoints) {
+        for (Point point : allPoints) {
             point.corToConsole();
             System.out.println("Point at the origin: " + point.pointAtTheOrigin());
         }
@@ -141,9 +141,9 @@ public class Main {
         /***вывод сообщения расстояния до другой точки*/
         System.out.println("Distance between points №1 and №2 = " + distanceBetweenPoints);
         //где находится центр круга
-        com.annyshik.Point centerCircle = new com.annyshik.Point(0, 0);
+        Point centerCircle = new Point(0, 0);
         //и указание радиуса
-        com.annyshik.Circle circle = new com.annyshik.Circle(centerCircle, 5);
+        Circle circle = new Circle(centerCircle, 5);
         System.out.println("Сenter of circle: ");
         centerCircle.corToConsole();
         System.out.println("Radius of circle: " + circle.getRadius());
